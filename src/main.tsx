@@ -5,17 +5,21 @@ import {BrowserRouter, Route, Routes} from "react-router";
 import Home from "./pages/Home.tsx";
 import HeaderNav from "./components/HeaderNav.tsx";
 import Footer from "./components/Footer.tsx";
+import {Provider} from "react-redux";
+import store from "./store.ts";
 
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
-		<BrowserRouter>
-			<HeaderNav/>
+		<Provider store={store}>
+			<BrowserRouter>
+				<HeaderNav/>
 
-			<Routes>
-				<Route path="/" element={<Home/>}/>
-			</Routes>
+				<Routes>
+					<Route path="/" element={<Home/>}/>
+				</Routes>
 
-			<Footer/>
-		</BrowserRouter>
+				<Footer/>
+			</BrowserRouter>
+		</Provider>
 	</StrictMode>
 );
