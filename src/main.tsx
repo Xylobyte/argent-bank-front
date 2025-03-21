@@ -6,7 +6,7 @@ import Home from "./pages/Home.tsx";
 import HeaderNav from "./components/HeaderNav.tsx";
 import Footer from "./components/Footer.tsx";
 import {Provider} from "react-redux";
-import store from "./store.ts";
+import store from "./app/store.ts";
 
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
