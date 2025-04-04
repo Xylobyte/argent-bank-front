@@ -7,6 +7,7 @@ import HeaderNav from "./components/HeaderNav.tsx";
 import Footer from "./components/Footer.tsx";
 import {Provider} from "react-redux";
 import store from "./app/store.ts";
+import Login from "./pages/Login.tsx";
 
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
@@ -16,6 +17,7 @@ createRoot(document.getElementById('root')!).render(
 
 				<Routes>
 					<Route path="/" element={<Home/>}/>
+					<Route path="/login" element={<Login/>}/>
 				</Routes>
 
 				<Footer/>
