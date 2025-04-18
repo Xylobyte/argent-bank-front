@@ -27,10 +27,7 @@ export const userProfile = createAsyncThunk<
 	{ state: { auth: AuthState } }
 >('auth/profile', async (_, { rejectWithValue, getState }) => {
 	try {
-		console.log('Fetch user', getState())
-		const r = await ArgentBankAPI.getUserInfo(getState().auth.userToken)
-		console.log(r)
-		return r
+		return await ArgentBankAPI.getUserInfo(getState().auth.userToken)
 	} catch (e) {
 		const error = e as HttpError
 		return rejectWithValue({
