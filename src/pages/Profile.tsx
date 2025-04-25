@@ -12,6 +12,15 @@ function Profile() {
 		document.title = 'Argent Bank - Profil'
 	}, [])
 
+	useEffect(() => {
+		setFirstNameInput(userInfo.firstName)
+		setLastNameInput(userInfo.lastName)
+	}, [userInfo])
+
+	const toggleEditName = () => {
+		setIsEditName(old => !old)
+	}
+
 	return (
 		<main className='main bg-dark'>
 			<div className='header'>
@@ -20,14 +29,31 @@ function Profile() {
 					<br />
 					{isEditName ? (
 						<>
-							<input type='text' />
+							<input
+								type='text'
+								value={firstNameInput}
+								onChange={e =>
+									setFirstNameInput(e.target.value)
+								}
+							/>
+							<input
+								type='text'
+								value={firstNameInput}
+								onChange={e =>
+									setFirstNameInput(e.target.value)
+								}
+							/>
 						</>
 					) : (
-						<span></span>
+						<>
+							<span>{userInfo.firstName}</span>
+							<span> {userInfo.lastName}</span>
+						</>
 					)}
-					{userInfo.firstName} {userInfo.lastName}
 				</h1>
-				<button className='edit-button'>Edit Name</button>
+				<button className='edit-button' onClick={toggleEditName}>
+					{isEditName ? 'Enregistrer' : 'Edit Name'}
+				</button>
 			</div>
 			<h2 className='sr-only'>Accounts</h2>
 			<section className='account'>
