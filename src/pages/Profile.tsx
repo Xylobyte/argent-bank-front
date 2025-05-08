@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
-import { useAppSelector } from '../app/hooks.ts'
+import { useAppDispatch, useAppSelector } from '../app/hooks.ts'
+import { updateUserProfile } from '../features/auth/authActions.ts'
+import './Profile.css'
 
 function Profile() {
 	const [firstNameInput, setFirstNameInput] = useState('')
@@ -7,6 +9,7 @@ function Profile() {
 	const [isEditName, setIsEditName] = useState(false)
 
 	const userInfo = useAppSelector(state => state.auth.userInfo)
+	const dispatch = useAppDispatch()
 
 	useEffect(() => {
 		document.title = 'Argent Bank - Profil'
@@ -18,6 +21,14 @@ function Profile() {
 	}, [userInfo])
 
 	const toggleEditName = () => {
+		if (isEditName) {
+			dispatch(
+				updateUserProfile({
+					firstName: firstNameInput,
+					lastName: lastNameInput,
+				}),
+			)
+		}
 		setIsEditName(old => !old)
 	}
 
@@ -30,6 +41,7 @@ function Profile() {
 					{isEditName ? (
 						<>
 							<input
+								className='i-firstname'
 								type='text'
 								value={firstNameInput}
 								onChange={e =>
@@ -37,11 +49,10 @@ function Profile() {
 								}
 							/>
 							<input
+								className='i-lastname'
 								type='text'
-								value={firstNameInput}
-								onChange={e =>
-									setFirstNameInput(e.target.value)
-								}
+								value={lastNameInput}
+								onChange={e => setLastNameInput(e.target.value)}
 							/>
 						</>
 					) : (
@@ -77,7 +88,7 @@ function Profile() {
 					<h3 className='account-title'>
 						Argent Bank Savings (x6712)
 					</h3>
-					<p className='account-amount'>$10,928.42</p>
+					<p className='account-amount'>$10,928,000,000.42</p>
 					<p className='account-amount-description'>
 						Available Balance
 					</p>

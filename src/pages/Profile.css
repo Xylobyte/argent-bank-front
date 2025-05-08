@@ -1,0 +1,9 @@
+input.i-firstname {
+    text-align: end;
+    margin-right: 5px;
+}
+
+input.i-lastname, input.i-firstname {
+    padding: 2px 5px;
+    font-size: 0.7em;
+}
