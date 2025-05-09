@@ -5,7 +5,7 @@ function ProtectedRoute() {
 	const userInfo = useAppSelector(state => state.auth.userInfo)
 
 	if (!userInfo) {
-		return <Navigate to='/' replace={true} />
+		return <Navigate to='/login' replace={true} />
 	}
 
 	return <Outlet />
