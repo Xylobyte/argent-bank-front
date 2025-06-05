@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { updateUserProfile, userLogin, userProfile } from './authActions.ts'
+import { updateUserProfile, userLogin, userProfile } from './auth.thunks.ts'
 import { User } from '../../api/user.types.ts'
 
 export interface AuthState {
@@ -9,12 +9,9 @@ export interface AuthState {
 	error?: 'internalError' | 'authError'
 }
 
-const userToken = localStorage.getItem('authToken')
-
 const initialState: AuthState = {
 	loading: false,
-	userToken,
-	error: null,
+	userToken: undefined,
 }
 
 /**

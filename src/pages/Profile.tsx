@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../app/hooks.ts'
-import { updateUserProfile } from '../features/auth/authActions.ts'
+import { updateUserProfile } from '../features/auth/auth.thunks.ts'
 import './Profile.css'
 
 function Profile() {

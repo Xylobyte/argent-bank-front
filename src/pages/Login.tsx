@@ -1,5 +1,5 @@
 import { FormEvent, useEffect, useState } from 'react'
-import { userLogin } from '../features/auth/authActions.ts'
+import { userLogin } from '../features/auth/auth.thunks.ts'
 import { useAppDispatch, useAppSelector } from '../app/hooks.ts'
 import { useNavigate } from 'react-router'
 

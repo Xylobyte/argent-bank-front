@@ -1,10 +1,26 @@
 import { configureStore } from '@reduxjs/toolkit'
-import authSlice from '../features/auth/authSlice.ts'
+import authReducer, { AuthState } from '../features/auth/auth.slice.ts'
+
+const loadAuthToken = (): string | undefined => {
+	try {
+		return localStorage.getItem('authToken') || undefined
+	} catch {
+		return undefined
+	}
+}
+
+const preloadedState = {
+	auth: {
+		loading: false,
+		userToken: loadAuthToken(),
+	} as AuthState,
+}
 
 export const store = configureStore({
 	reducer: {
-		auth: authSlice,
+		auth: authReducer,
 	},
+	preloadedState,
 })
 
 export type RootState = ReturnType<typeof store.getState>

@@ -1,8 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { ArgentBankAPI } from '../../api/ArgentBankAPI.ts'
 import { HttpError } from '../../api/utils.ts'
-import { AuthState } from './authSlice.ts'
+import { AuthState } from './auth.slice.ts'
 import { User } from '../../api/user.types.ts'
+import { LoginResponse } from '../../api/login.types.ts'
 
 /**
  * Asynchronous thunk to handle user login.
@@ -11,22 +12,22 @@ import { User } from '../../api/user.types.ts'
  * @param {function} rejectWithValue - Function to reject the asynchronous request with a value.
  * @returns {object} The result of the login attempt, or an error object if rejected.
  */
-export const userLogin = createAsyncThunk(
-	'auth/login',
-	async (data: { email: string; password: string }, { rejectWithValue }) => {
-		try {
-			const r = await ArgentBankAPI.login(data.email, data.password)
-			localStorage.setItem('authToken', r.token)
-			return r
-		} catch (e) {
-			const error = e as HttpError
-			return rejectWithValue({
-				status: error.status,
-				message: error.message,
-			})
-		}
-	},
-)
+export const userLogin = createAsyncThunk<
+	LoginResponse,
+	{ email: string; password: string }
+>('auth/login', async (data, { rejectWithValue }) => {
+	try {
+		const r = await ArgentBankAPI.login(data.email, data.password)
+		localStorage.setItem('authToken', r.token)
+		return r
+	} catch (e) {
+		const error = e as HttpError
+		return rejectWithValue({
+			status: error.status,
+			message: error.message,
+		})
+	}
+})
 
 /**
  * UserProfile object retrieved from the API.

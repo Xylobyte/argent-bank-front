@@ -1,8 +1,8 @@
 import { Link, useNavigate } from 'react-router'
 import { useAppDispatch, useAppSelector } from '../app/hooks.ts'
 import { useEffect } from 'react'
-import { userProfile } from '../features/auth/authActions.ts'
-import { logout } from '../features/auth/authSlice.ts'
+import { userProfile } from '../features/auth/auth.thunks.ts'
+import { logout } from '../features/auth/auth.slice.ts'
 
 function HeaderNav() {
 	const userInfo = useAppSelector(state => state.auth.userInfo)
