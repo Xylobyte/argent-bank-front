@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { updateUserProfile, userLogin, userProfile } from './auth.thunks.ts'
 import { User } from '../../api/user.types.ts'
+import { logoutAction } from './auth.actions.ts'
 
 export interface AuthState {
 	loading: boolean
@@ -25,13 +26,7 @@ export const authSlice = createSlice({
 	name: 'auth',
 	initialState,
 	reducers: {
-		logout: (state: AuthState) => {
-			localStorage.removeItem('authToken')
-			state.userToken = undefined
-			state.userInfo = undefined
-			state.error = undefined
-			state.loading = false
-		},
+		logout: logoutAction,
 	},
 	extraReducers: builder => {
 		builder.addCase(userLogin.pending, state => {
