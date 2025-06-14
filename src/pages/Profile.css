@@ -7,3 +7,12 @@ input.i-lastname, input.i-firstname {
     padding: 2px 5px;
     font-size: 0.7em;
 }
+
+input.i-lastname.error, input.i-firstname.error {
+    border: 2px solid red;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

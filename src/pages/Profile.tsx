@@ -41,17 +41,19 @@ function Profile() {
 					{isEditName ? (
 						<>
 							<input
-								className='i-firstname'
+								className={`i-firstname ${firstNameInput.length < 2 ? 'error' : ''}`}
 								type='text'
 								value={firstNameInput}
 								onChange={e =>
 									setFirstNameInput(e.target.value)
 								}
+								minLength={2}
 							/>
 							<input
-								className='i-lastname'
+								className={`i-lastname ${lastNameInput.length < 2 ? 'error' : ''}`}
 								type='text'
 								value={lastNameInput}
+								minLength={2}
 								onChange={e => setLastNameInput(e.target.value)}
 							/>
 						</>
@@ -62,7 +64,13 @@ function Profile() {
 						</>
 					)}
 				</h1>
-				<button className='edit-button' onClick={toggleEditName}>
+				<button
+					disabled={
+						firstNameInput.length < 2 || lastNameInput.length < 2
+					}
+					className='edit-button'
+					onClick={toggleEditName}
+				>
 					{isEditName ? 'Save' : 'Edit Name'}
 				</button>
 			</div>
